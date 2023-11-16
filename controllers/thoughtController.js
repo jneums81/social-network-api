@@ -56,8 +56,10 @@ const thoughtController = {
       await User.findByIdAndUpdate(deletedThought.userId, { $pull: { thoughts: deletedThought._id } });
       res.json(deletedThought);
     } catch (error) {
+      console.error('Error deleting thought:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
+    
   },
 
   createReaction: async (req, res) => {
